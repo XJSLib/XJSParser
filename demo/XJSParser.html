@@ -39,9 +39,23 @@ input.onchange = function ( ) {
         removeEmpty: true
     } );
     console.log( result );
+    div.innerHTML = '';
     div.appendChild( result.toHTML( ) );
-    console.log(result.clone( ).flatten().toString( ))
-    console.log(result.toString( ))
+    div.appendChild( result.clone().flatten().toHTML( ) );
+    //console.log(result.clone( ).flatten().toString( ))
+    //console.log(result.toString( ))
 };
+
 input.onchange( );
+
+var b = document.createElement('button');
+input.parentNode.insertBefore( b, div );
+b.innerHTML = 'cos';
+b.onclick = function ( ) {
+    console.profile('cos')
+    input.value = 'cos(cos(cos(0)))';
+    input.onchange( );
+    console.profileEnd();
+};
+
 </script>

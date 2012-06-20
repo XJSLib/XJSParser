@@ -10,7 +10,7 @@ function ProductionSet( callback ) {
                 return ProductionReference.apply(Object.create(ProductionReference.prototype), Array.toArray( arguments).concat( byName ) );
             }
         }
-    } ), optionsByName );
+    } ) );
     if ( ! Array.isArray( byIndex ) ) {
         throw new Error( );
     }

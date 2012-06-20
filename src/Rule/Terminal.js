@@ -2,16 +2,19 @@
 ** Rule > Terminal
 */
 function Terminal( ) {
-    var strings = [ ];
+    var string;
     var args = Array.toArray( arguments ).filter( function ( arg ) {
-        if ( getTypeOf( arg === 'string' ) ) {
-            strings.push( arg );
+        if ( getTypeOf( arg ) === 'string' ) {
+            if ( string !== undefined ) {
+                throw new Error( );
+            }
+            string = arg;
             return false;
         } else {
             return true;
         }
     } );
-    this.string = strings.join( '' );
+    this.string = string;
     Rule.apply( this, args );
     return this;
 }

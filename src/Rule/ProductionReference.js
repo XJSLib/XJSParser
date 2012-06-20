@@ -10,7 +10,7 @@ function ProductionReference( ) {
                 if ( name !== undefined ) {
                     throw new Error( );
                 }
-                name = arg + '';
+                name = arg;
                 return false;
             case 'object':
                 if ( productions !== undefined ) {
@@ -23,6 +23,8 @@ function ProductionReference( ) {
         }
     } );
     var production;
+    
+    
     Object.defineProperties( this, {
         production: {
             get: function ( ) {

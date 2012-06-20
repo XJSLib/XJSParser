@@ -1,34 +1,20 @@
 function XJSParser( language ) {
-    var syntax;
-    Object.defineProperties( this, {
-        language: {
-            get: function ( ) {
-                return language;
-            },
-            set: function ( value ) {
-                if ( getTypeOf( value ) !== 'string' ) {
-                    throw new TypeError( );
-                }
-                if ( ! XJSParser.syntaxes.hasOwnProperty( language ) ) {
-                    throw new Error( );
-                }
-                syntax = XJSParser.syntaxes[ language ];
-                language = value;
-            }
-        },
-        syntax: {
-            get: function ( ) {
-                return syntax;
-            }
-        }
-    } );
+    if ( getTypeOf( language ) !== 'string' ) {
+        throw new TypeError( );
+    }
     this.language = language;
+    var syntax = this.syntax = XJSParser.syntaxes[ language ];
+    if ( ! ( syntax instanceof ProductionSet ) ) {
+        throw new TypeError( );
+    }
+    return this;
 }
-XJSParser.syntaxes = { };
+XJSParser.syntaxes = Object.create( null );
 Object.defineProperties( XJSParser.prototype, {
     parse: {
         value: function ( src ) {
-            return this.syntax.exec.apply( this.syntax, arguments );
+            var syntax = this.syntax;
+            return syntax.exec.apply( syntax, arguments );
         }
     }
 } );

@@ -26,7 +26,6 @@ function Production( production ) {
         }
         this.start = true;
     }
-    this.applyOptions( production, [ 'name', 'rules', 'start' ] );
     return this;
 }
 Production.inherits( Rule );
